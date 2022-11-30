@@ -22,14 +22,10 @@ const Home = () => {
   });
 
   const data = await response.json();
-  const { output, result } = data;
-  console.log("OpenAI replied...", output.text)
+  const { result } = data;
 
-  setApiOutput(`${result.text} 
 
-  Here are some question for you:
-
-   ${output.text}`);
+  setApiOutput(result.text);
   setIsGenerating(false);
 }
 
