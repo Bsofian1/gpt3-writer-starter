@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import Image from 'next/image';
-import buildspaceLogo from '../assets/buildspace-logo.png';
 
 const Home = () => {
   const [userInput, setUserInput] = useState('');
@@ -36,7 +34,7 @@ const Home = () => {
   return (
     <div className="root">
       <Head>
-        <title>GPT-3 Writer | buildspace</title>
+        <title>GPT-3 Writer | Seth Godin AI helper</title>
       </Head>
       <div className="container">
         <div className="header">
@@ -44,7 +42,7 @@ const Home = () => {
             <h1>Ask Seth Godin</h1>
           </div>
           <div className="header-subtitle">
-            <h2>Ask a marketing question and see what Seth will say.</h2>
+            <h2>Ask a marketing question and see what Seth will answer.</h2>
           </div>
         </div>
         <div className="prompt-container">
