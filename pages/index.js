@@ -8,8 +8,10 @@ const Home = () => {
   const [question, setQuestion] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
   
+  //Style the icon
   const style = { color: "white", fontSize: "1.5em" }
-
+  
+  //Call the api NEXT
   const callGenerateEndpoint = async () => {
   setIsGenerating(true);
   
@@ -34,10 +36,12 @@ const Home = () => {
   setIsGenerating(false);
   setQuestion(`${question.text}`)
 }
+
+//Copy question in clipboard function
 const handleCopy=()=>{
   navigator.clipboard.writeText(question)
 }
-
+  
   const onUserChangedText = (event) => {
     setUserInput(event.target.value);
   };
