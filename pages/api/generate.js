@@ -21,7 +21,32 @@ const generateAction = async (req, res) => {
     
     const basePromptOutput = baseCompletion.data.choices.pop();
 
-    res.status(200).json({result: basePromptOutput });
+    const secondPrompt = 
+  `
+  from the following content, ask a question to reflect or go deeper on the topic?
+
+  question: ${req.body.userInput}
+
+  answer: ${basePromptOutput.text}
+
+  following questions:
+  `
+  
+  // I call the OpenAI API a second time with Prompt #2
+  const secondPromptCompletion = await openai.createCompletion({
+    model: 'text-davinci-003',
+    prompt: `${secondPrompt}`,
+    // I set a higher temperature for this one. Up to you!
+    temperature: 0.85,
+		// I also increase max_tokens.
+    max_tokens: 1250,
+  });
+  
+  // Get the output
+  const secondPromptOutput = secondPromptCompletion.data.choices.pop();
+
+
+    res.status(200).json({result: basePromptOutput, question: secondPromptOutput });
   };
   
   export default generateAction; 

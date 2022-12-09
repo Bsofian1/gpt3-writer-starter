@@ -1,10 +1,14 @@
 import Head from 'next/head';
 import { useState } from 'react';
+import { RxCopy } from 'react-icons/rx';
 
 const Home = () => {
   const [userInput, setUserInput] = useState('');
   const [apiOutput, setApiOutput] = useState('')
+  const [question, setQuestion] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
+  
+  const style = { color: "white", fontSize: "1.5em" }
 
   const callGenerateEndpoint = async () => {
   setIsGenerating(true);
@@ -20,11 +24,18 @@ const Home = () => {
   });
 
   const data = await response.json();
-  const { result } = data;
+  const { result, question } = data;
 
 
-  setApiOutput(result.text);
+  setApiOutput(`${result.text} 
+
+  But now, it's your time to answer
+  `);
   setIsGenerating(false);
+  setQuestion(`${question.text}`)
+}
+const handleCopy=()=>{
+  navigator.clipboard.writeText(question)
 }
 
   const onUserChangedText = (event) => {
@@ -70,6 +81,14 @@ const Home = () => {
               </div>
               <div className="output-content">
                 <p>{apiOutput}</p>
+                <div>
+                  {question ?
+                  <div className='copy-button-wrapper'>
+                  <input className='question' value={question}/>
+                  <button className='copy-button' onClick={handleCopy}> <RxCopy style={style}/></button>
+              </div>: <div></div> }
+                
+                </div>
               </div>
             </div>
           )}
