@@ -1,20 +1,29 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import { RxCopy } from 'react-icons/rx';
+import Image from 'next/image'
+import seth from '../assets/seth.png'
+
 
 const Home = () => {
   const [userInput, setUserInput] = useState('');
   const [apiOutput, setApiOutput] = useState('')
   const [question, setQuestion] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
+
+
   
   //Style the icon
   const style = { color: "white", fontSize: "1.5em" }
+
+  //Style the image
+  const styleImage = { borderRadius: "50%" }
   
   //Call the api NEXT
   const callGenerateEndpoint = async () => {
   setIsGenerating(true);
   
+  //Call the API
   console.log("Calling OpenAI...")
   const response = await fetch('/api/generate', {
     method: 'POST',
@@ -42,9 +51,9 @@ const handleCopy=()=>{
   navigator.clipboard.writeText(question)
 }
   
-  const onUserChangedText = (event) => {
-    setUserInput(event.target.value);
-  };
+const onUserChangedText = (event) => {
+  setUserInput(event.target.value);
+};
 
   return (
     <div className="root">
@@ -52,6 +61,13 @@ const handleCopy=()=>{
         <title>GPT-3 Writer | Seth Godin AI helper</title>
       </Head>
       <div className="container">
+      <Image
+        src={seth}
+        alt="Picture of the author"
+        width={100} 
+        height={100} 
+        style={styleImage}
+      />
         <div className="header">
           <div className="header-title">
             <h1>Ask Seth Godin</h1>
@@ -88,7 +104,10 @@ const handleCopy=()=>{
                 <div>
                   {question ?
                   <div className='copy-button-wrapper'>
-                  <input className='question' value={question}/>
+                    <textarea 
+                      className="prompt-box-small question"
+                      value={question}
+                    />
                   <button className='copy-button' onClick={handleCopy}> <RxCopy style={style}/></button>
               </div>: <div></div> }
                 

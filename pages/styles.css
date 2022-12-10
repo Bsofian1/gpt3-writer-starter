@@ -113,6 +113,53 @@ body {
     text-transform: none;
 }
 
+.prompt-box-small {
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-width: 1px;
+    place-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: column nowrap;
+    gap: 10px;
+    height: 40px;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
+    width: 610px;
+    max-width: 1200px;
+    will-change: transform;
+    overflow: auto;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+    font-style: normal;
+    letter-spacing: 0px;
+    line-height: 1em;
+    text-align: start;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    text-transform: none;
+}
+
+.copy-button-wrapper{
+    display: flex;
+}
+
+.copy-button{
+    background-color: rgb(108, 102, 212);
+    width: 60px;
+    border-radius: 20%;
+    border: none;
+}
+
+
 textarea {
     font-family: 'Manrope', sans-serif;
 }
