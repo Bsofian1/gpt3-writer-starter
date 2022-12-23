@@ -6,7 +6,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = `Answer the following question like you were Seth Godin from the website https://seths.blog/. Show some wisdom and passion in your answer.
+const basePromptPrefix = `Answer the following question like you were Seth Godin from the website https://seths.blog/. Show some wisdom and passion in your answer. All answers must be written in first person plural. Always take a stand for the user and be user focus.
 question:`;
 
 const generateAction = async (req, res) => {
@@ -23,7 +23,7 @@ const generateAction = async (req, res) => {
 
     const secondPrompt = 
   `
-  from the following content, ask a question to reflect or go deeper on the topic?
+  from the following content, ask 1 question to reflect or go deeper on the topic?
 
   question: ${req.body.userInput}
 

@@ -10,8 +10,6 @@ const Home = () => {
   const [apiOutput, setApiOutput] = useState('')
   const [question, setQuestion] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
-
-
   
   //Style the icon
   const style = { color: "white", fontSize: "1.5em" }
@@ -54,6 +52,10 @@ const handleCopy=()=>{
 const onUserChangedText = (event) => {
   setUserInput(event.target.value);
 };
+
+const onUserChangeQuestion =(event) =>{
+  setQuestion(event.target.value)
+}
 
   return (
     <div className="root">
@@ -107,6 +109,7 @@ const onUserChangedText = (event) => {
                     <textarea 
                       className="prompt-box-small question"
                       value={question}
+                      onChange={onUserChangeQuestion}
                     />
                   <button className='copy-button' onClick={handleCopy}> <RxCopy style={style}/></button>
               </div>: <div></div> }
